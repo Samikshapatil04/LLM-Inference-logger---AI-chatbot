@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  --bg-base:        #09090f;
+  --bg-elevated:    #111119;
+  --bg-surface:     #18181f;
+  --bg-overlay:     #21212d;
+  --border:         #28283a;
+  --border-bright:  #38384f;
+  --accent:         #6c63ff;
+  --accent-light:   #9d98ff;
+  --accent-dim:     rgba(108,99,255,.14);
+  --green:          #22d3a0;
+  --red:            #ff5566;
+  --yellow:         #ffd166;
+  --text-primary:   #eaeaf5;
+  --text-secondary: #8a8aaa;
+  --text-muted:     #52526a;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar           { width: 4px; height: 4px; }
+::-webkit-scrollbar-track     { background: transparent; }
+::-webkit-scrollbar-thumb     { background: var(--border-bright); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Animations ────────────────────────────────────────────────────────── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+@keyframes blink    { 0%,100%{ opacity:1; } 50%{ opacity:0; } }
+@keyframes shimmer  { from{ background-position:-200% 0; } to{ background-position:200% 0; } }
+@keyframes typingY  { 0%,60%,100%{ transform:translateY(0); } 30%{ transform:translateY(-5px); } }
+@keyframes spin     { to { transform: rotate(360deg); } }
+@keyframes pulseDot { 0%,100%{ transform:scale(1); opacity:1; } 50%{ transform:scale(1.5); opacity:.5; } }
+
+.animate-in { animation: fadeUp .22s ease both; }
+
+.shimmer {
+  background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-overlay) 50%, var(--bg-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.cursor-blink::after {
+  content: '▋';
+  animation: blink 1s step-end infinite;
+  color: var(--accent);
+  margin-left: 2px;
+  font-size: .85em;
+}
+
+.spin { animation: spin 1s linear infinite; }
+
+/* Typing dots */
+.typing-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.typing-dot:nth-child(1){ animation: typingY 1.4s ease infinite 0ms; }
+.typing-dot:nth-child(2){ animation: typingY 1.4s ease infinite 160ms; }
+.typing-dot:nth-child(3){ animation: typingY 1.4s ease infinite 320ms; }
+
+/* ── Message content (markdown output) ─────────────────────────────────── */
+.msg-content { line-height: 1.72; }
+.msg-content p           { margin-bottom: 8px; }
+.msg-content p:last-child{ margin-bottom: 0; }
+.msg-content h1 { font-size:1.25rem; font-weight:700; margin:14px 0 6px; font-family:'Syne',sans-serif; }
+.msg-content h2 { font-size:1.1rem;  font-weight:700; margin:12px 0 6px; font-family:'Syne',sans-serif; }
+.msg-content h3 { font-size:1rem;    font-weight:600; margin:10px 0 5px; }
+.msg-content ul, .msg-content ol { padding-left:20px; margin:6px 0; }
+.msg-content li { margin:3px 0; }
+.msg-content hr { border:none; border-top:1px solid var(--border); margin:12px 0; }
+
+.msg-content pre {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.msg-content code {
+  background: rgba(108,99,255,.12);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85em;
+  color: var(--accent-light);
+}
+.msg-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+
+/* ── Utility buttons ───────────────────────────────────────────────────── */
+button { font-family: inherit; }

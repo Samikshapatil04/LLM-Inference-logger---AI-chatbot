@@ -1,0 +1,13 @@
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['DM Sans', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+        display: ['Syne', 'sans-serif'],
+      }
+    }
+  },
+  plugins: []
+}
