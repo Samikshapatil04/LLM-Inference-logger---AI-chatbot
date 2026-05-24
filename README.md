@@ -311,9 +311,3 @@ llm-inference-logger/
 
 ---
 
-## 📬 Submission
-
-**Built for:** work@ollive.ai
-
-- GitHub: [your-repo-url]
-- Demo: [your-demo-url or Loom link]
